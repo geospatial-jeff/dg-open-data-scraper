@@ -15,7 +15,7 @@ def dg_open_data():
     pass
 
 @dg_open_data.command(name="build")
-@click.option('--output', '-o', type=click.File(mode='w'))
+@click.option('--output', '-o', type=click.File(mode='wb'))
 def build(output):
     outdir = '/tmp/{}/'.format(uuid.uuid4())
     if not os.path.exists(outdir):
@@ -35,8 +35,7 @@ def build(output):
 
         start = time.time()
         md = get_info(outfile)
-        with open(output, 'wb') as fp:
-            pickle.dump(md, fp)
+        pickle.dump(md, output)
         end = time.time()
 
         print("Getting metadata took {} seconds".format(end-start))
