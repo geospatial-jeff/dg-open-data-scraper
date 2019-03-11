@@ -20,8 +20,6 @@ hyperlink==18.0.0
 idna<2.8
 incremental==17.5.0
 lxml==4.3.2
-mkl-fft==1.0.10
-mkl-random==1.0.2
 numpy==1.16.2
 parsel==1.5.1
 pathspec==0.5.5
