@@ -12,11 +12,17 @@ def link_generator(links_path):
                 yield link
 
 def gdalInfo(link):
-    info = gdal.Info('/vsicurl/{}'.format(link), format='json', allMetadata=True)
-    return info
+    print(link)
+    try:
+        info = gdal.Info('/vsicurl/{}'.format(link), format='json', allMetadata=True)
+        return info
+    except:
+        print("Caught an exception!")
+        return None
 
 
 def get_info(links_path):
     m = ThreadPool()
-    response = m.map(gdalInfo, link_generator(links_path))
+    links = list(link_generator(links_path))
+    response = m.map(gdalInfo, links)
     return response
