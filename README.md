@@ -9,6 +9,10 @@ The library has a simple CLI which scrapes the Open Data program website to gene
 dg-open-data build --output data.txt
 ```
 
-**Disclaimer:** There are a lot of images (~24,000) in the entire dataset so the above command can take a long time.  
+You can also trnslate the output text file to other data formats such as an Rtree:
 
-There are a lot of images (~24,000) in the entire dataset so the above command can take a while to run.  It took ~20 minutes to process the entire dataset with 100 threads on a t2.2xlarge EC2 instance.  
+```
+dg-open-data translate data.txt --output rtree_index --format rtree
+```
+
+**Disclaimer:** There are a lot of images (~24,000) in the entire dataset so the above command can take a long time.  It took ~20 minutes to process the entire dataset with 100 threads on a t2.2xlarge EC2 instance.  
