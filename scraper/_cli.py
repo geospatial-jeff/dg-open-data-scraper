@@ -9,6 +9,7 @@ from scrapy.crawler import CrawlerProcess
 
 from .dg_spider import DGOpenDataSpider
 from .build_catalog import get_info
+from .utilities import index_to_rtree
 
 @click.group(short_help="Scrape spatial extents and metadata from Digital Globe Open Data Program (disaster data)")
 def dg_open_data():
@@ -42,3 +43,11 @@ def build(output):
 
     finally:
         shutil.rmtree(outdir)
+
+@dg_open_data.command(name="translate")
+@click.argument('index_file')
+@click.option('--output', '-o', type=str)
+@click.option('--format', '-f', type=str)
+def translate(index_file, output, format):
+    if format == 'rtree':
+        index_to_rtree(index_file, output)
