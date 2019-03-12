@@ -7,7 +7,7 @@ setup(name="dg-open-data-scraper",
       version='0.1',
       author='Jeff Albrecht',
       author_email='geospatialjeff@gmail.com',
-      packages=find_packages(),
+      packages=find_packages(exclude='data'),
       install_requires = requirements,
       entry_points= {
           "console_scripts": [
