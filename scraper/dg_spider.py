@@ -1,7 +1,7 @@
 import scrapy
 
 class DGOpenDataSpider(scrapy.Spider):
-    name = 'quotes'
+    name = 'dg-open-data'
     start_urls = [
         'https://www.digitalglobe.com/ecosystem/open-data',
     ]

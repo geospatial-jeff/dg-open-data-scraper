@@ -23,6 +23,5 @@ def gdalInfo(link):
 
 def get_info(links_path):
     m = ThreadPool()
-    links = list(link_generator(links_path))
-    response = m.map(gdalInfo, links)
+    response = m.map(gdalInfo, link_generator(links_path))
     return response

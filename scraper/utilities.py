@@ -20,7 +20,7 @@ def index_to_rtree(index_file, index_location):
                     'eo:epsg': asset['coordinateSystem']['wkt'].rsplit('"EPSG","', 1)[-1].split('"')[0],
                     'bbox': bbox,
                     'geometry': geometry,
-                    'link': asset['description']
+                    'link': asset['description'].replace('/vsicurl/','')
                 }
 
                 idx.insert(i,
