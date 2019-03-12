@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 with open('./requirements.txt') as reqs:
     requirements = [line.rstrip() for line in reqs]
 
-setup(name="dg-open-data-scraper",
+setup(name="dg_open_data_scraper",
       version='0.1',
       author='Jeff Albrecht',
       author_email='geospatialjeff@gmail.com',
