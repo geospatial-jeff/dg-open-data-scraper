@@ -3,7 +3,7 @@ import pickle
 from rtree import index
 
 
-def index_to_rtree(index_file, index_location, properties_function=None):
+def index_to_rtree(index_file, index_location):
     idx = index.Index(index_location)
 
     with open(index_file, 'rb') as f:
@@ -15,11 +15,14 @@ def index_to_rtree(index_file, index_location, properties_function=None):
                 xcoords = [x[0] for x in geometry[0]]
                 ycoords = [y[1] for y in geometry[0]]
                 bbox = [min(xcoords), min(ycoords), max(xcoords), max(ycoords)]
-                if properties_function:
-                    idx.insert(i,
-                               bbox,
-                               obj=properties_function(asset))
-                else:
-                    idx.insert(i,
-                               bbox)
-                i+=1
+
+                payload = {
+                    'eo:epsg': asset['coordinateSystem']['wkt'].rsplit('"EPSG","', 1)[-1].split('"')[0],
+                    'bbox': bbox,
+                    'geometry': geometry,
+                    'link': asset['description']
+                }
+
+                idx.insert(i,
+                           bbox,
+                           obj=payload)
