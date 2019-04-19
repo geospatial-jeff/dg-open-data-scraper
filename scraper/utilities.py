@@ -45,7 +45,7 @@ def index_to_geojson(index_file, geojson_location):
                 feature = {
                     'type': 'Feature',
                     'properties': {
-                        'id': id,
+                        'id': i,
                         'eo:epsg': asset['coordinateSystem']['wkt'].rsplit('"EPSG","', 1)[-1].split('"')[0],
                         'eo:gsd': (asset['geoTransform'][1] + abs(asset['geoTransform'][-1])) / 2,
                         'link': asset['description'].replace('/vsicurl/', ''),
@@ -57,6 +57,8 @@ def index_to_geojson(index_file, geojson_location):
                 }
 
                 feature_collection['features'].append(feature)
+
+                i+=1
 
     with open(geojson_location, 'w') as out_geoj:
         json.dump(feature_collection, out_geoj)
