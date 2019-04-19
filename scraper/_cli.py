@@ -9,7 +9,7 @@ from scrapy.crawler import CrawlerProcess
 
 from .dg_spider import DGOpenDataSpider
 from .build_catalog import get_info
-from .utilities import index_to_rtree
+from .utilities import index_to_rtree, index_to_geojson
 
 @click.group(short_help="Scrape spatial extents and metadata from Digital Globe Open Data Program (disaster data)")
 def dg_open_data():
@@ -51,3 +51,6 @@ def build(output):
 def translate(index_file, output, format):
     if format == 'rtree':
         index_to_rtree(index_file, output)
+    elif format == 'geojson':
+        index_to_geojson(index_file, output)
+
